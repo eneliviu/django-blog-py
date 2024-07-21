@@ -31,3 +31,5 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     # this uses a constant STATUS
 
+    excerpt = models.TextField(blank=True)
+
