@@ -14,8 +14,15 @@ import os
 import dj_database_url
 if os.path.isfile('env.py'):
     import env
-
 from pathlib import Path
+
+# The dj_database_url import is used to convert the database URL into a format
+#  that Django can use to connect to an external database server.
+
+# The code uses another method from the os module to check if the env.py file path exists. 
+# If it does, then it will be imported. If it does not exist, the env import will not be 
+# attempted so that no error will occur. For example, when the app runs on Heroku, 
+# there will be no env.py file to load
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +32,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-c$edrwg21a2h7g^d5mjf4^#6cax*%5fp)0+vgmf#g43&10nrm1'
+# SECRET_KEY = 'django-insecure-c$edrwg21a2h7g^d5mjf4^#6cax*%5fp)0+vgmf#g43&10nrm1'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -86,9 +94,14 @@ WSGI_APPLICATION = 'codestar.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+
+# This code uses os.environ.get to get the value stored in the DATABASE_URL 
+# environment variable. The value is then parsed using dj_database_url to put it
+# in a format that Django can use.
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
