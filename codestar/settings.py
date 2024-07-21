@@ -36,7 +36,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['8000-eneliviu-djangoblogpy-h09fu1py07c.ws.codeinstitute-ide.net', 
                  '.herokuapp.com']
@@ -104,7 +104,9 @@ DATABASES = {
 
 CSRF_TRUSTED_ORIGINS = [
     "https://*.codeanyapp.com",
-    "https://*.herokuapp.com"
+    "https://*.herokuapp.com",
+    'https://*.127.0.0.1',
+    "https://*8000-eneliviu-djangoblogpy-h09fu1py07c.ws.codeinstitute-ide.net"
 ]
 # The list of the trusted origins for requests.
 # Need to add both your local development server URL domain 
