@@ -106,8 +106,11 @@ CSRF_TRUSTED_ORIGINS = [
     "https://*.codeanyapp.com",
     "https://*.herokuapp.com"
 ]
-#The list of the trusted origins for requests.
-
+# The list of the trusted origins for requests.
+# Need to add both your local development server URL domain 
+# and the production server URL domain to allow you to add blog post
+# content from the admin dashboard.
+# The subdomain is wildcarded with a *.
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
