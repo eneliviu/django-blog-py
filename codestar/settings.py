@@ -108,6 +108,7 @@ CSRF_TRUSTED_ORIGINS = [
     'https://*.127.0.0.1',
     "https://*8000-eneliviu-djangoblogpy-h09fu1py07c.ws.codeinstitute-ide.net"
 ]
+# Cross-Site Request Forgery: when an attacker's website tries to make requests to another site on your behalf.
 # The list of the trusted origins for requests.
 # Need to add both your local development server URL domain 
 # and the production server URL domain to allow you to add blog post
