@@ -37,6 +37,15 @@ class Post(models.Model):
 
     updated_on = models.DateTimeField(auto_now=True)
     
+    def __str__(self):
+        return f"The title of the post is: {self.title}"
+
+
+    # The Meta class provides additional information or metadata about the model.
+    class Meta:
+        ordering = ["-created_on"]
+
+
 
 class Comment(models.Model):
     
@@ -61,5 +70,4 @@ class Comment(models.Model):
 
 
     created_on = models.DateTimeField(auto_now_add=True)
-
 
