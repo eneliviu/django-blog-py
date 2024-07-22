@@ -16,8 +16,10 @@ class Post(models.Model):
     # the slug is what is used to build a URL for each post
     
     author = models.ForeignKey(
-        User, on_delete=models.CASCADE, related_name='blog_posts'
-    )
+                               User, 
+                               on_delete=models.CASCADE,
+                               related_name='blog_posts'
+                            )
     # One user can write many posts, so this is a one-to-many or Foreign Key. 
     # The cascade on delete means that on the deletion of the user entry,
     # all their posts are also deleted.
