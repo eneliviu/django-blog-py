@@ -65,9 +65,13 @@ class Comment(models.Model):
 
     body = models.TextField()
 
-
     approved = models.BooleanField(default=False)
-
 
     created_on = models.DateTimeField(auto_now_add=True)
 
+
+    def __str__(self):
+        return f"Comment {self.body} by {self.author}"
+
+    class Meta:
+        ordering = ["created-on"]
