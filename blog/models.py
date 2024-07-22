@@ -38,7 +38,7 @@ class Post(models.Model):
     updated_on = models.DateTimeField(auto_now=True)
     
     def __str__(self):
-        return f"The title of the post is: {self.title}"
+        return f"Title: {self.title} | written by {self.author}"
 
 
     # The Meta class provides additional information or metadata about the model.
