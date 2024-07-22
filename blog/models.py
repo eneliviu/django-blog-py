@@ -74,4 +74,4 @@ class Comment(models.Model):
         return f"Comment {self.body} by {self.author}"
 
     class Meta:
-        ordering = ["created-on"]
+        ordering = ["created_on"]
