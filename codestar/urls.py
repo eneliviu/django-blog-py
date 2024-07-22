@@ -19,6 +19,6 @@ from django.urls import path, include
 
 
 urlpatterns = [
-    path('', include('blog.urls'), name='blog'),
+    path('', include('blog.urls'), name='blog'),  # look in the blog app URL file for any blog urlpatterns.
     path('admin/', admin.site.urls),
 ]
