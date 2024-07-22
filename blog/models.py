@@ -34,9 +34,9 @@ class Post(models.Model):
     # this uses a constant STATUS
 
     excerpt = models.TextField(blank=True)
-
     updated_on = models.DateTimeField(auto_now=True)
-    
+
+
     def __str__(self):
         return f"Title: {self.title} | written by {self.author}"
 
