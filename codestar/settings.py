@@ -74,8 +74,8 @@ ROOT_URLCONF = 'codestar.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
-        'APP_DIRS': True,
+        'DIRS': [TEMPLATES_DIR],  # templates directory in the base, or top-level directory.
+        'APP_DIRS': True,  # Django looks for a templates directory inside all app directories.
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
