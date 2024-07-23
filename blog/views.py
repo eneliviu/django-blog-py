@@ -6,6 +6,6 @@ from .models import Post
 
 # Class-based view that inherits from the generic.ListView class to display all posts.
 class PostList(generic.ListView):
-    queryset = Post.objects.all()  # a collection of records from the database.
-    #queryset = Post.objects.all().order_by('created_on')
-    template_name = "post_list.html"
+    queryset = Post.objects.filter(status=1)  # a collection of records from the database.
+    template_name = "blog/index.html"
+    paginate_by = 6
