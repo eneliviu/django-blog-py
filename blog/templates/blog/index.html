@@ -19,6 +19,11 @@
                                 </div>
                             </div>
                             <a href="{% url 'post_detail' post.slug %}" class="post-link">
+                                <!--
+                                href contains a DTL url tag. {% url %} tags can be used to pass a variable into a URL pattern
+                                It contains post.slug, and the urlpattern name of 'post_detail' function-based view.
+                                As the anchor is inside the for-loop, post.slug is this blog post's slug value.
+                                -->
                                 <h2 class="card-title">{{ post.title }}</h2>
                                 <p class="card-text">{{ post.excerpt }}</p>
                             </a>
