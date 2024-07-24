@@ -76,11 +76,5 @@ class Comment(models.Model):
         ordering = ["created_on"]
 
 
-class About(models.Model):
-    
-    updated_on = models.DateTimeField(auto_now_add=True)
 
-    content = models.TextField()
-
-    
 
