@@ -40,7 +40,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['8000-eneliviu-djangoblogpy-h09fu1py07c.ws.codeinstitute-ide.net', 
                  '.herokuapp.com']
@@ -55,10 +55,28 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'django_summernote',
     'blog',
     'about',
 ]
+
+
+SITE_ID = 1  # so that Django can handle multiple sites from one database. 
+             # We need to give each project an ID value so that the database 
+             # is aware of which project is contacting it. 
+             # We only have one site here using our one database, 
+             # but we'll still need to tell Django the site number of 1 explicitly.
+
+
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+# The redirection URLs are also added so that after we've logged in or logged out, 
+# the site will automatically redirect us to the home page.
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -69,6 +87,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',  # middleware for the allauth.account app added to INSTALLED_APPS
 ]
 
 ROOT_URLCONF = 'codestar.urls'
@@ -140,6 +159,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'  # not using email verification in this project
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
