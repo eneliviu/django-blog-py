@@ -46,7 +46,6 @@ class Post(models.Model):
         ordering = ["-created_on"]
 
 
-
 class Comment(models.Model):
     
     
@@ -75,3 +74,13 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ["created_on"]
+
+
+class About(models.Model):
+    
+    updated_on = models.DateTimeField(auto_now_add=True)
+
+    content = models.TextField()
+
+    
+
