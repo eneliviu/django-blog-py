@@ -59,6 +59,8 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    'crispy_forms',       # no migrations files to migrate for crispy_forms.
+    'crispy_bootstrap5',  # no migrations files to migrate for crispy_bootstrap5.
     'django_summernote',
     'blog',
     'about',
@@ -76,6 +78,13 @@ LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 # The redirection URLs are also added so that after we've logged in or logged out, 
 # the site will automatically redirect us to the home page.
+
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
+CRISPY_TEMPLATE_PACK = 'bootstrap5'
+# These constants set bootstrap5 as the allowed template pack and as the default template pack for project. 
+# This choice of default template pack is to match the Bootstrap5 CSS and JS files
+# already used in project base.html template.
 
 
 MIDDLEWARE = [
