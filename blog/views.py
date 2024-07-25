@@ -97,8 +97,11 @@ def comment_edit(request, slug, comment_id):
 
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
-        comment = get_object_or_404(Comment, pk=comment_id)
-        comment_form = CommentForm(data=request.POST, instance=comment)
+        comment = get_object_or_404(Comment,
+                                    pk=comment_id) 
+        comment_form = CommentForm(data=request.POST, 
+                        instance=comment)  # Changes made to the form will be applied to the existing Comment,
+                                           # instead of creating a new one.
 
         if comment_form.is_valid() and comment.author == request.user:
             comment = comment_form.save(commit=False)
