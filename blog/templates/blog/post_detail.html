@@ -35,7 +35,7 @@
   <div class="row">
     <div class="col-12">
       <strong class="text-secondary">
-        <i class="far fa-comments"></i> {{ comment_count }}
+        <i class="far fa-comments"></i> {{ comments.count }}
       </strong>
     </div>
     <div class="col-12">
@@ -96,7 +96,8 @@
         <h3>Leave a comment:</h3>
         <p>Posting as: {{ user.username }}</p>
         <form id="commentForm" method="post" style="margin-top: 1.3em;">
-          {{ comment_form | crispy }} <!--crispy filter rendering using Bootstrap 5 form controls and classes -->
+          {{ comment_form | crispy }} <!--crispy filter rendering using Bootstrap 5 form controls and classes
+                                       the browser automatically generates id_body from the tag -->
           {% csrf_token %} <!--protect from cross-site attacks, needs to be added every time
                                             we render a form.
                                             If you have more than one form on a page, you will need this tag on each of them.
