@@ -1,8 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.contrib import messages
-from .models import Post
+from django.http import HttpResponseRedirect
+from .models import Post, Comment
 from .forms import CommentForm
+
 
 # Create your views here.
 
@@ -34,9 +36,7 @@ def post_detail(request, slug):
     comment_count = post.comments.filter(approved=True).count()
 
     if request.method == 'POST':
-        print('Received a POST request')
         comment_form = CommentForm(data=request.POST)
-        print(comment_form)
         if comment_form.is_valid():  # checks our model to see the constraints on our fields i.e. we don't try to write
                                      # a null value to the database
 
@@ -51,7 +51,7 @@ def post_detail(request, slug):
             comment.post = post
 
             # write the data to the database.
-            comment.save  
+            comment.save()  
             
             # When a message is added, it is displayed in the nav in base.html.
             messages.add_message(
@@ -87,3 +87,63 @@ def post_detail(request, slug):
     )
 
 
+
+def comment_edit(request, slug, comment_id):
+    """ 
+    View to edit comments
+    """
+
+    if request.method == 'POST':
+
+        queryset = Post.objects.filter(status=1)
+        post = get_object_or_404(queryset, slug=slug)
+        comment = get_object_or_404(Comment, pk=comment_id)
+        comment_form = CommentForm(data=request.POST, instance=comment)
+
+        if comment_form.is_valid() and comment.author == request.user:
+            comment = comment_form.save(commit=False)
+            comment.post = post
+            comment.approved = False
+            comment.save()
+
+            messages.add_message(
+                request, 
+                messages.SUCCESS,
+                'Comment updated!'
+            )
+
+        else:
+            messages.add_message(
+                request,
+                messages.ERROR,
+                'Error updating comment!'
+            )
+
+    return HttpResponseRedirect(reverse('post_detail', args=[slug]))    
+
+
+def comment_delete(request, slug, comment_id):
+    """
+    View to delete comment
+    """
+
+    queryset = Post.objects.filter(status=1)
+    post = get_object_or_404(queryset, slug=slug)
+    comment = get_object_or_404(Comment, pk=comment_id)
+
+    if comment.author == request.user:
+        comment.delete()
+        messages.add_message(
+            request,
+            messages.SUCCESS,
+            'Comment deleted'
+        )
+    else:
+        messages.add_message(
+            request,
+            messages.ERROR,
+            'You can only delete your own comments!'
+        )
+
+    
+    return HttpResponseRedirect(reverse('post_detail', args=[slug]))
