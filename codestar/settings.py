@@ -11,10 +11,12 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 import os
+from pathlib import Path
 import dj_database_url
+from django.contrib.messages import constants as messages
 if os.path.isfile('env.py'):
     import env
-from pathlib import Path
+
 
 # The dj_database_url import is used to convert the database URL into a format
 #  that Django can use to connect to an external database server.
@@ -184,6 +186,11 @@ USE_I18N = True
 
 USE_TZ = True
 
+# Assign Boostrap classes to messages
+MESSAGE_TAGS = {
+    messages.SUCCESS: 'alert-success',
+    messages.ERROR: 'alert-error',
+}
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/

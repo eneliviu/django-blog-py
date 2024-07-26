@@ -19,11 +19,19 @@ class PostList(generic.ListView):
 # The first argument sent to any Django view function is the request object
 def post_detail(request, slug):
     """
-    Function-based view:
-    Displays an individual :model:`blog.Post`.
+    Function-based view that displays an individual :model:`blog.Post`.
+
+    **Context**
+    ``post``
+        An instance of :model:`blog.Post`
+    ``comments``
+        All approved comments related to the post
+    ``comment_count``
+        A count of approved comments related to the post
+    ``comment_form``
+        An isntance of :form:`blog.CommentForm`
 
     **Template:**
-    
     :template:`blog/post_detail.html`
     """
 
@@ -66,10 +74,6 @@ def post_detail(request, slug):
     # This line resets the content of the form to blank
     # so that a user can write a second comment if they wish.
     comment_form = CommentForm()  
-
-    print('About to render template')
-
-
 
     return render(
         request,

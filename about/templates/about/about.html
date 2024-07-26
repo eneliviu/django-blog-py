@@ -9,10 +9,10 @@
 
         <div class="col-12 col-md-4 text-center">
             {% if "placeholder" in about.profile_image.url %}
-            <img class="scale" width="75%" src="{% static 'images/nobody.jpg' %}" alt="placeholder image">
+            <img class="scale profile_image" src="{% static 'images/nobody.jpg' %}" alt="placeholder image">
             {% else %}
             <!--fetches the unique image URL from Cloudinary stored in the featured_image field -->
-            <img class="scale" width="75%" src=" {{ about.profile_image.url }}" alt="{{ about.title }}">
+            <img class="scale profile_image" width="75%" src=" {{ about.profile_image.url }}" alt="{{ about.title }}">
             {% endif %}
         </div>
         <!--<div class="col-12 col-md-4 text-center"><img src="{% static 'images/nobody.jpg' %}" width="75%"></div>-->

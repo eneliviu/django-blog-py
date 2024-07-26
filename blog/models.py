@@ -9,6 +9,9 @@ STATUS = ((0, "Draft"), (1, "Published"))
 
 # Create your models here.
 class Post(models.Model):
+    ''' 
+    Stores a single blog post entry retaed to  :model:`auth.User`. 
+    '''
     
     title = models.CharField(max_length=200, unique=True)
     # The title values should be unique to avoid having blog posts
