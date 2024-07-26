@@ -46,7 +46,10 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 DEBUG = False
 
 ALLOWED_HOSTS = ['8000-eneliviu-djangoblogpy-h09fu1py07c.ws.codeinstitute-ide.net', 
-                 '.herokuapp.com']
+                 '.herokuapp.com',
+                 "https://*.codeanyapp.com",
+                 "https://*.herokuapp.com",
+                 'https://*.127.0.0.1']
 
 
 # Application definition
@@ -140,6 +143,7 @@ WSGI_APPLICATION = 'codestar.wsgi.application'
 # in a format that Django can use.
 DATABASES = {
     'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
+    #'default': dj_database_url.config(os.environ.get('DATABASE_URL'))
 }
 
 if 'test' in sys.argv:
