@@ -26,7 +26,7 @@ class Post(models.Model):
     # The cascade on delete means that on the deletion of the user entry,
     # all their posts are also deleted.
 
-    featured_image = CloudinaryField('image', default='placeholder')
+    featured_image = CloudinaryField('image', default='placeholder')  # URL to Cloudinary
 
     content = models.TextField()
     # This is the blog article content.
